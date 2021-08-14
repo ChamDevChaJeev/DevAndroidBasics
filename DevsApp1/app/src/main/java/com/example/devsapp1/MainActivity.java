@@ -1,9 +1,12 @@
 package com.example.devsapp1;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,5 +39,20 @@ public class MainActivity extends AppCompatActivity {
     public void onRestart(){
         super.onRestart();
         Log.e("life","On restart");
+    }
+
+    public void StartService(View view) {
+        Log.e("life","StartService");
+        Intent serviceintent=new Intent(this,ForegroundService.class);
+        serviceintent.putExtra("inputExtra","Android forground service");
+        ContextCompat.startForegroundService(this,serviceintent);
+        Log.e("life","back to start service");
+    }
+
+    public void StopService(View view) {
+        Log.e("life","stopService");
+    Intent serviceintent=new Intent(this,ForegroundService.class);
+    stopService(serviceintent);
+        Log.e("life","back to stopService");
     }
 }
